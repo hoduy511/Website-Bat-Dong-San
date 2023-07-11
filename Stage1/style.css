@@ -43,6 +43,7 @@ body {
 .leftcolumn {
     float: left;
     width: 75%;
+    height: auto;
 }
 .rightcolumn {
     float: left;
@@ -63,6 +64,38 @@ body {
     padding: 20px;
     margin: 20px;
     float: left;
+}
+
+.card-config {
+    display: flex;
+    margin-top: 15px;
+}
+
+
+.card-config-price {
+    width: 20%;
+    color: red;
+}
+
+.card-config-area {
+    width: 60%;
+    color: red;
+}
+
+.icon-location {
+    width: 20px;
+    height: 20px;
+}
+
+.card-contact {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.icon-contact-button {
+    width: 20px;
+    height: 20px;   
 }
 
 .row:after {
