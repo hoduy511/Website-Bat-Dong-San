@@ -135,6 +135,7 @@ body {
 .card.detail {
     text-align: left;
 }
+
 /* ------- */
 .footer {
     padding: 10px;
@@ -145,7 +146,7 @@ body {
 
 
 .slider {
-    width: 150px;
+    width: 800px;
     margin: 0 auto;
     padding-top: 40px;
     overflow: hidden;
@@ -193,9 +194,20 @@ body {
 #img3:checked~.img-slider3 {
     margin-left: -300%;
 }
+
+#img4:checked~.img-slider4 {
+    margin-left: -400%;
+}
+
+#img5:checked~.img-slider5 {
+    margin-left: -500%;
+}
+
 /* ---- */
 
-#price, #area, #bedroom {
+#price,
+#area,
+#bedroom {
     font-size: 20px;
-    
+
 }
