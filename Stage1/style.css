@@ -72,14 +72,27 @@ body {
     float: left;
 }
 
+.card-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    /* number of lines to show */
+    -webkit-line-clamp: 2;
+    line-height: 1.5em;
+    max-height: 3em;
+}
+
 .card-config {
     display: flex;
-    margin-top: 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 
 .card-config-price {
-    width: 20%;
+    max-width: fit-content;
+    margin-right: 20px;
     color: red;
     margin-top: 4px;
 }
@@ -119,6 +132,9 @@ body {
     text-align: center;
 }
 
+.card.detail {
+    text-align: left;
+}
 /* ------- */
 .footer {
     padding: 10px;
@@ -151,6 +167,7 @@ body {
 .lable-slider {
     display: flex;
     justify-content: center;
+    margin-top: 20px;
 }
 
 .lable-slider label {
@@ -165,14 +182,20 @@ body {
     background: bisque;
 }
 
-#img1:checked ~.img-slider1 {
+#img1:checked~.img-slider1 {
     margin-left: -100%;
 }
 
-#img2:checked ~.img-slider2{
+#img2:checked~.img-slider2 {
     margin-left: -200%;
 }
 
-#img3:checked ~.img-slider3 {
+#img3:checked~.img-slider3 {
     margin-left: -300%;
+}
+/* ---- */
+
+#price, #area, #bedroom {
+    font-size: 20px;
+    
 }
