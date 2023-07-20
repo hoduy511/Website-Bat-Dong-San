@@ -98,7 +98,8 @@ body {
 }
 
 .card-config-area {
-    width: 60%;
+    width: 30%;
+    float: right;
     color: red;
 }
 
