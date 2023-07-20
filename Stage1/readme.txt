@@ -1,1 +1,1 @@
-just html css
+deploy: https://hoduy511.github.io/Exc/Stage1/index.html
