@@ -1,0 +1,43 @@
+.leftcolumn > .container {
+    margin: auto auto;
+    height: 700px;
+    width: 1000px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+.row1 {
+    display: flex;
+    justify-content: space-around;
+}
+.container > h1 {
+    text-align: center;
+}
+.prev, .next {
+    height: 50px;
+    width: 50px;
+    background: aquamarine;
+    display: block;
+    border-radius: 50%;
+    text-align: center;
+    padding: 15px;
+    padding-left: 10px;
+    margin-top: 30%;
+}
+.prev:hover, .next:hover {
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.leftcolumn > .container > .row1 > img {
+    border: 0px solid black;
+    border-radius: 20px;
+    height: 500px;
+    width: 80%;
+    margin-top: 20px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+.leftcolumn > .container > .row1 > img.show {
+    opacity: 1;
+}
