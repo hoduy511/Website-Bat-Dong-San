@@ -9,6 +9,9 @@ function check() {
         studentID.className = "error";
         formStatus = false;
     }
+    else {
+        studentID.className = "success";
+    }
 
     // check fullname
     var fullname = document.getElementById("fullname");
@@ -17,6 +20,9 @@ function check() {
         fullname.className = "error";
         formStatus = false;
     }
+    else {
+        fullname.className = "success";
+    }
 
     //check email
     var email = document.getElementById("email");
@@ -24,6 +30,9 @@ function check() {
         message += "Bạn phải nhập email!<br>";
         email.className = "error";
         formStatus = false;
+    }
+    else {
+        email.className = "success";
     }
     //check gender
     var gender = document.getElementsByName("gender");
@@ -53,8 +62,10 @@ function check() {
         formStatus = false;
     }
 
-    if (message == "")
+    if (message == "") 
         message += "Thành công";
+
     document.getElementById("message").innerHTML = message;
     return formStatus;
 }
+

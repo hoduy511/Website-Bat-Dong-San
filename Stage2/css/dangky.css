@@ -3,6 +3,9 @@ form .error {
     background-color: yellow;
 }
 
+form .success {
+    
+}
 #message {
     color: red;
     font-weight: bold;
