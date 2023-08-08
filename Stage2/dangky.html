@@ -24,7 +24,7 @@
         <div class="leftcolumn">
             <h2>ĐĂNG KÍ THÀNH VIÊN</h2>
             <div class="container">
-                <form action="" name="register-form">
+                <form action="" name="register-form" onsubmit="return check();">
                     <p>
                         <label for="">Mã sinh viên</label> <br>
                         <input type="text" name="student-id" id="student-id" placeholder="Nhập mã số sinh viên">
@@ -71,7 +71,7 @@
                         <textarea name="note" id="note" cols="50" rows="4"></textarea>
                     </p>
 
-                    <p><button type="submit" onclick="return check();"> Đăng ký</button></p>
+                    <p><button type="submit"> Đăng ký</button></p>
 
                     <div id="message">
 
