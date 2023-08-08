@@ -63,7 +63,7 @@ function check() {
     }
 
     if (message == "") 
-        message += "Thành công";
+        message += "Đăng kí thành công";
 
     document.getElementById("message").innerHTML = message;
     return formStatus;
