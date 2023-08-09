@@ -220,3 +220,11 @@ body {
     font-size: 20px;
 
 }
+
+.card > a {
+    text-decoration: none;
+}
+
+.card > a:hover {
+    color: red;
+}

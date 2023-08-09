@@ -30,10 +30,12 @@ function onoff(checkboxElement) {
         inputNumber.disabled = true;
         inputNumber.value = "";
 
-        var thanhtien = parseInt(thanhtienElement.innerText);
+        var thanhtien = 0;
+        if (thanhtienElement.innerText.replaceAll(',', '') != '')
+            thanhtien = parseInt(thanhtienElement.innerText.replaceAll(',', ''));
 
-        var tongtien = parseInt(tongtienElement.innerText);
-        tongtienElement.innerText = tongtien - thanhtien;
+        var tongtien = parseInt(tongtienElement.innerText.replaceAll(',', ''));
+        tongtienElement.innerText = (tongtien - thanhtien).toLocaleString();
         thanhtienElement.innerText = "";
         console.log(tongtienElement, tongtien);
     }
@@ -45,29 +47,28 @@ function tinhtien(inputElement) {
     var dongiaElement = inputElement.parentElement.parentElement.getElementsByTagName("td")[2];
     var tongtienElement = document.getElementById("tongtien");
     var tiencu = 0;
-    if (thanhtienElement.innerText != "")
-        tiencu = parseInt(thanhtienElement.innerText);
+    if (thanhtienElement.innerText.replaceAll(',', '') != "")
+        tiencu = parseInt(thanhtienElement.innerText.replaceAll(',', ''));
     var tienmoi = 0;
     if (inputElement.value != "")
-        tienmoi = parseInt(inputElement.value) * parseInt(dongiaElement.innerText);
+        tienmoi = parseInt(inputElement.value) * parseInt(dongiaElement.innerText.replaceAll(',', ''));
     var tongtien = 0;
-    if (tongtienElement.innerText != "")
-        tongtien = parseInt(tongtienElement.innerText);
-    console.log(thanhtienElement.innerText);
+    if (tongtienElement.innerText.replaceAll(',', '') != "")
+        tongtien = parseInt(tongtienElement.innerText.replaceAll(',', ''));
 
-    thanhtienElement.innerText = tienmoi;
-    tongtienElement.innerText = tongtien - tiencu + tienmoi;
+    thanhtienElement.innerText = tienmoi.toLocaleString();
+    tongtienElement.innerText = (tongtien - tiencu + tienmoi).toLocaleString();
 }
 function loadByMinMax(minPrice, maxPrice) {
     var tablebody = document.getElementsByTagName("tbody")[0];
     tablebody.innerHTML = "";
     for (var i = 0; i < n; i++) {
         if ((minPrice == null || lst[i].dongia >= minPrice) && (maxPrice == null || lst[i].dongia < maxPrice)) {
-            var tbrow = " <tr><td><input type='checkbox' onclick='onoff(this)'></td><td>" + lst[i].ten + "</td><td>" + lst[i].dongia + "</td><td><input type='number' disabled onchange='tinhtien(this)''></td><td></td></tr>";
+            var tbrow = " <tr><td><input type='checkbox' onclick='onoff(this)'></td><td>" + lst[i].ten + "</td><td>" + lst[i].dongia.toLocaleString() + "</td><td><input type='number' disabled onchange='tinhtien(this)' min='0''></td><td></td></tr>";
             tablebody.innerHTML += tbrow;
         }
     }
-    tablebody.innerHTML += "<tr><td colspan='4'>TỔNG</td><td id='tongtien'>0</td></tr>";
+    tablebody.innerHTML += "<tr><td colspan='4'><b>TỔNG</b></td><td id='tongtien'>0</td></tr>";
 }
 
 function filter(selectElement) {
