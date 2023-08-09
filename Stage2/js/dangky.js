@@ -6,63 +6,105 @@ function check() {
     var studentID = document.getElementById("student-id");
     if (studentID.value == "") {
         message += "Bạn phải nhập mã số sinh viên!<br>";
-        studentID.className = "error";
+        studentID.classList.add("error");
         formStatus = false;
     }
     else {
-        studentID.className = "success";
+        studentID.classList.remove("error");
     }
 
     // check fullname
     var fullname = document.getElementById("fullname");
     if (fullname.value == "") {
         message += "Bạn phải nhập họ và tên!<br>";
-        fullname.className = "error";
+        fullname.classList.add("error");
         formStatus = false;
     }
     else {
-        fullname.className = "success";
+        fullname.classList.remove("error");
     }
 
     //check email
     var email = document.getElementById("email");
     if (email.value == "") {
         message += "Bạn phải nhập email!<br>";
-        email.className = "error";
+        email.classList.add("error");
         formStatus = false;
     }
     else {
-        email.className = "success";
+        email.classList.remove("error");
     }
     //check gender
     var gender = document.getElementsByName("gender");
-    if (gender[0].checked == false && gender[1].checked == false) {
-        message += "Bạn phải chọn giới tính!<br>"
+    var genderChecked = false;
+
+    for (var i = 0; i < gender.length; i++) {
+        if (gender[i].checked) {
+            genderChecked = true;
+            break;
+        }
+    }
+
+    if (genderChecked == false) {
+        message += "Bạn phải chọn giới tính!<br>";
+        for (var i = 0; i < gender.length; i++) {
+            gender[i].parentNode.classList.add("error");
+        }
         formStatus = false;
+    }
+    else {
+        for (var i = 0; i < gender.length; i++) {
+            gender[i].parentNode.classList.remove("error");
+        }
     }
 
     // check hobby
     var hobby = document.getElementsByName("hobby");
-    if ((hobby[0].checked || hobby[1].checked || hobby[2].checked || hobby[3].checked || hobby[4].checked) == false) {
+    var hobbyChecked = false;
+
+    for (var i = 0; i < hobby.length; i++) {
+        if (hobby[i].checked) {
+            hobbyChecked = true;
+            break;
+        }
+    }
+
+    if (hobbyChecked == false) {
         message += "Bạn phải chọn sở thích!<br>";
+        for (var i = 0; i < hobby.length; i++) {
+            hobby[i].parentNode.classList.add("error");
+        }
         formStatus = false;
+    } 
+    else {
+        for (var i = 0; i < hobby.length; i++) {
+            hobby[i].parentNode.classList.remove("error");
+        }
     }
 
     // check nationality
     var nationality = document.getElementById("nationality");
     if (nationality.value == "") {
         message += "Bạn phải chọn quốc tịch!<br>";
+        nationality.classList.add("error");
         formStatus = false;
+    }
+    else {
+        nationality.classList.remove("error");
     }
 
     // check note
-    var note = document.getElementById("note").value;
-    if (note.length >= 200) {
+    var note = document.getElementById("note");
+    if (note.value.length >= 200) {
         message += "Nội dung của ghi chú phải nhỏ hơn 200 ký tự!";
+        note.classList.add("error");
         formStatus = false;
     }
+    else {
+        note.classList.remove("error");
+    }
 
-    if (message == "") 
+    if (message == "")
         message += "Đăng kí thành công";
 
     document.getElementById("message").innerHTML = message;

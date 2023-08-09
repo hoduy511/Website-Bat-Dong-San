@@ -1,11 +1,13 @@
-form .error {
-    border: 1px solid red;
+div .error {
     background-color: yellow;
 }
 
-form .success {
-    
-}
+/* input .error{
+    border: 2px solid red;
+    background-color: yellow;
+} */
+
+
 #message {
     color: red;
     font-weight: bold;
@@ -39,7 +41,9 @@ input[type="checkbox"] {
     margin-right: 5px;
     font-size: 16px;
 }
-.hobby-container, .gender-container {
+
+.hobby-container,
+.gender-container {
     width: 100%;
     padding: 10px;
     border: 1px solid black;
@@ -69,4 +73,3 @@ button:hover {
     border: 1px solid black;
     border-radius: 5px;
 }
-

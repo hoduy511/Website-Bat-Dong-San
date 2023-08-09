@@ -55,8 +55,8 @@ function tinhtien(inputElement) {
         tongtien = parseInt(tongtienElement.innerText);
     console.log(thanhtienElement.innerText);
 
-    thanhtienElement.innerText = new Intl.NumberFormat().format(tienmoi);
-    tongtienElement.innerText = new Intl.NumberFormat().format(tongtien - tiencu + tienmoi);
+    thanhtienElement.innerText = tienmoi;
+    tongtienElement.innerText = tongtien - tiencu + tienmoi;
 }
 function loadByMinMax(minPrice, maxPrice) {
     var tablebody = document.getElementsByTagName("tbody")[0];
