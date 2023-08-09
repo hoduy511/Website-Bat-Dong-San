@@ -21,19 +21,19 @@ function onoff(checkboxElement) {
     var inputNumber = parentElement.getElementsByTagName("input")[1];
     var thanhtienElement = parentElement.getElementsByTagName("td")[4];
     var tongtienElement = document.getElementById("tongtien");
-    
+
     if (checkboxElement.checked) {
         inputNumber.disabled = false;
         inputNumber.value = 0;
-        thanhtienElement.innerText = 0;
+        //thanhtienElement.innerText = 0;
     } else {
         inputNumber.disabled = true;
         inputNumber.value = "";
-        
+
         var thanhtien = parseInt(thanhtienElement.innerText);
-        
+
         var tongtien = parseInt(tongtienElement.innerText);
-        tongtienElement.innerText = tongtien-thanhtien;
+        tongtienElement.innerText = tongtien - thanhtien;
         thanhtienElement.innerText = "";
         console.log(tongtienElement, tongtien);
     }
@@ -41,22 +41,29 @@ function onoff(checkboxElement) {
 
 function tinhtien(inputElement) {
     var thanhtienElement = inputElement.parentElement.parentElement.getElementsByTagName("td")[4];
-    
+
     var dongiaElement = inputElement.parentElement.parentElement.getElementsByTagName("td")[2];
     var tongtienElement = document.getElementById("tongtien");
-    var tiencu = parseInt(thanhtienElement.innerText);
-    var tienmoi = parseInt(inputElement.value) * parseInt(dongiaElement.innerText);
-    var tongtien = parseInt(tongtienElement.innerText);
+    var tiencu = 0;
+    if (thanhtienElement.innerText != "")
+        tiencu = parseInt(thanhtienElement.innerText);
+    var tienmoi = 0;
+    if (inputElement.value != "")
+        tienmoi = parseInt(inputElement.value) * parseInt(dongiaElement.innerText);
+    var tongtien = 0;
+    if (tongtienElement.innerText != "")
+        tongtien = parseInt(tongtienElement.innerText);
+    console.log(thanhtienElement.innerText);
 
-    thanhtienElement.innerText = tienmoi;
-    tongtienElement.innerText = tongtien - tiencu + tienmoi;
+    thanhtienElement.innerText = new Intl.NumberFormat().format(tienmoi);
+    tongtienElement.innerText = new Intl.NumberFormat().format(tongtien - tiencu + tienmoi);
 }
 function loadByMinMax(minPrice, maxPrice) {
     var tablebody = document.getElementsByTagName("tbody")[0];
     tablebody.innerHTML = "";
-    for(var i=0;i<n;i++) {
+    for (var i = 0; i < n; i++) {
         if ((minPrice == null || lst[i].dongia >= minPrice) && (maxPrice == null || lst[i].dongia < maxPrice)) {
-            var tbrow = " <tr><td><input type='checkbox' onclick='onoff(this)'></td><td>"+lst[i].ten+"</td><td>"+lst[i].dongia+"</td><td><input type='number' disabled onchange='tinhtien(this)''></td><td></td></tr>";
+            var tbrow = " <tr><td><input type='checkbox' onclick='onoff(this)'></td><td>" + lst[i].ten + "</td><td>" + lst[i].dongia + "</td><td><input type='number' disabled onchange='tinhtien(this)''></td><td></td></tr>";
             tablebody.innerHTML += tbrow;
         }
     }
