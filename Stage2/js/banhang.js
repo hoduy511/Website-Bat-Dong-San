@@ -1,3 +1,4 @@
+/* Tạo 1 lớp đối tượng gọi là SanPham để lưu 2 giá trị tên và đơn giá*/
 class SanPham {
     constructor(ten, dongia) {
         this.ten = ten;
@@ -13,8 +14,10 @@ lst[2] = new SanPham("Trọ quận 12", 800000);
 lst[3] = new SanPham("Chung cư cho thuê quận 7", 35000000);
 lst[4] = new SanPham("Trọ Bình Thành", 5000000);
 lst[5] = new SanPham("Trọ Gò Vấp", 1500000);
-console.log(lst[0].ten);
 
+/* hàm này được gọi khi check hoặc uncheck checkbox ở đầu mỗi hàng*/
+/* hàm này dùng để khi check cho phép người dùng nhập số lượng 
+    khi uncheck tính lại tiền và không cho phép người dùng nhập số lượng*/
 function onoff(checkboxElement) {
     console.log(checkboxElement);
     var parentElement = checkboxElement.parentElement.parentElement;
@@ -25,7 +28,6 @@ function onoff(checkboxElement) {
     if (checkboxElement.checked) {
         inputNumber.disabled = false;
         inputNumber.value = 0;
-        //thanhtienElement.innerText = 0;
     } else {
         inputNumber.disabled = true;
         inputNumber.value = "";
@@ -40,7 +42,9 @@ function onoff(checkboxElement) {
         console.log(tongtienElement, tongtien);
     }
 }
-
+/* hàm tính tiền được gọi khi số lượng sản phẩm thay đổi*/
+/* công thức: tongtien = tongtien - (thanh tien cu) + (thanh tien moi)*/
+/* hàm toLocaleString() dùng để hiển thị dấu phẩy ngăn cách mõi hàng ngàn vd: 1200 -> 1,200*/
 function tinhtien(inputElement) {
     var thanhtienElement = inputElement.parentElement.parentElement.getElementsByTagName("td")[4];
 
@@ -59,6 +63,7 @@ function tinhtien(inputElement) {
     thanhtienElement.innerText = tienmoi.toLocaleString();
     tongtienElement.innerText = (tongtien - tiencu + tienmoi).toLocaleString();
 }
+/* hàm lọc phẩm dựa trên min max giá*/
 function loadByMinMax(minPrice, maxPrice) {
     var tablebody = document.getElementsByTagName("tbody")[0];
     tablebody.innerHTML = "";
@@ -71,6 +76,7 @@ function loadByMinMax(minPrice, maxPrice) {
     tablebody.innerHTML += "<tr><td colspan='4'><b>TỔNG</b></td><td id='tongtien'>0</td></tr>";
 }
 
+/* hàm lấy giá trị giá min max dùng để lọc sản phẩm*/
 function filter(selectElement) {
     var selectedOption = selectElement.options[selectElement.selectedIndex];
     var dataMin = selectedOption.getAttribute('data-min');
@@ -79,6 +85,3 @@ function filter(selectElement) {
     console.log(dataMax);
     loadByMinMax(dataMin, dataMax);
 }
-
-
-

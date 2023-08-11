@@ -5,14 +5,17 @@
 body {
     font-family: Arial;
     padding: 10px;
-    background: #d8e4f4;
+    /* background: #d8e4f4; */
+
+    background-color: #4158D0;
+    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
 }
 
 /*Header/ Blog Title*/
 .header {
     padding: 10px;
     text-align: center;
-    background: white;
+    /* background: white; */
     color: #25287b;
 }
 
@@ -20,13 +23,6 @@ body {
     height: 150px;
 }
 
-.header h1 {
-    font-size: 40px;
-}
-
-.header p {
-    font-size: 20px;
-}
 
 /* --------- */
 .topnav {
@@ -60,24 +56,26 @@ body {
 .rightcolumn {
     float: right;
     width: 25%;
-    background-color: #d8e4f4;
+    /* background-color: #d8e4f4; */
     padding-left: 20px;
 }
 
 
 
 /* ------------- */
-.images {
-    width: 100%;
-    height: 200px;
-}
 
-.card-news {
+
+.card-items {
     width: 30%;
     background-color: white;
     padding: 20px;
     margin: 15px;
     float: left;
+}
+
+.images {
+    width: 100%;
+    height: 200px;
 }
 
 .card-title {
@@ -127,6 +125,7 @@ body {
     height: 20px;
 }
 
+/* clear float khác sau các cột*/
 .row:after {
     content: "";
     display: table;
@@ -149,7 +148,7 @@ body {
 .footer {
     padding: 10px;
     text-align: center;
-    background: white;
+    /* background: white; */
     margin-top: 10px;
 }
 

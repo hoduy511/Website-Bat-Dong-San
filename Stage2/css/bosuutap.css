@@ -36,8 +36,10 @@
     width: 80%;
     margin-top: 20px;
     opacity: 0;
+    /* hiệu ứng chuyển ảnh*/
     transition: opacity 0.5s ease;
 }
+/* thay đổi độ trong suốt khi gọi class*/
 .leftcolumn > .container > .row1 > img.show {
     opacity: 1;
 }
