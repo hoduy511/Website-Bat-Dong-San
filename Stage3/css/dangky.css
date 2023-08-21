@@ -1,0 +1,75 @@
+div .error {
+    background-color: yellow;
+}
+
+/* input .error{
+    border: 2px solid red;
+    background-color: yellow;
+} */
+
+
+#message {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+h2 {
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    margin-right: 5px;
+    font-size: 16px;
+}
+
+.hobby-container,
+.gender-container {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    display: block;
+    margin: 0 auto;
+}
+
+button:hover {
+    background-color: yellowgreen;
+}
+
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+}

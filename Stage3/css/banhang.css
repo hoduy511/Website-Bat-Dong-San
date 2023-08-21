@@ -1,0 +1,26 @@
+.leftcolumn>h1 {
+    text-align: center;
+}
+
+.leftcolumn {
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px double black;
+}
+
+th,
+td {
+    border: 1px solid black;
+    padding: 6px;
+    text-align: center;
+}
+
+select {
+    width: 200px;
+    height: 30px;
+    font-size: 20px;
+}
