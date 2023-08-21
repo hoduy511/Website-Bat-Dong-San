@@ -35,7 +35,7 @@ function check() {
         email.classList.remove("error");
     }
     //check gender
-    var gender = document.getElementsByName("gender");
+    var gender = document.getElementsByName("gioitinh");
     var genderChecked = false;
 
     for (var i = 0; i < gender.length; i++) {
@@ -59,7 +59,7 @@ function check() {
     }
 
     // check hobby
-    var hobby = document.getElementsByName("hobby");
+    var hobby = document.getElementsByName("sothich[]");
     var hobbyChecked = false;
 
     for (var i = 0; i < hobby.length; i++) {

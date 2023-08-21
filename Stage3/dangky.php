@@ -24,15 +24,15 @@
         <div class="leftcolumn">
             <h2>ĐĂNG KÍ THÀNH VIÊN</h2>
             <div class="container">
-                <form action="" name="register-form" onsubmit="return check();">
+                <form action="xulydangky.php" name="register-form" onsubmit="return check();" method="post">
                     <p>
                         <label for="">Mã sinh viên</label> <br>
-                        <input type="text" name="student-id" id="student-id" placeholder="Nhập mã số sinh viên">
+                        <input type="text" name="mssv" id="student-id" placeholder="Nhập mã số sinh viên">
                     </p>
 
                     <p>
                         <label for="">Họ và tên</label> <br>
-                        <input type="text" name="fullname" id="fullname" placeholder="Nhập họ và tên">
+                        <input type="text" name="hoten" id="fullname" placeholder="Nhập họ và tên">
                     </p>
 
                     <p>
@@ -43,25 +43,25 @@
                     <p>
                         <label for="">Giới tính</label>
                         <div class="gender-container">
-                            <input type="radio" name="gender" id="male" value="Nam"> Nam
-                            <input type="radio" name="gender" id="female" value="Nữ"> Nữ
+                            <input type="radio" name="gioitinh" id="male" value="1"> Nam
+                            <input type="radio" name="gioitinh" id="female" value="0"> Nữ
                         </div>
                     </p>
 
                     <p>
                         <label for="">Sở thích</label>
                             <div class="hobby-container">
-                                <input type="checkbox" name="hobby" id="hobby-1" value="Đọc sách"> Đọc sách
-                                <input type="checkbox" name="hobby" id="hobby-2" value="Du lịch"> Du lịch
-                                <input type="checkbox" name="hobby" id="hobby-3" value="Âm nhạc"> Âm nhạc
-                                <input type="checkbox" name="hobby" id="hobby-4" value="Ẩm thực"> Ẩm thực
-                                <input type="checkbox" name="hobby" id="hobby-others" value="Khác"> Khác
+                                <input type="checkbox" name="sothich[]" id="hobby-1" value="Đọc sách"> Đọc sách
+                                <input type="checkbox" name="sothich[]" id="hobby-2" value="Du lịch"> Du lịch
+                                <input type="checkbox" name="sothich[]" id="hobby-3" value="Âm nhạc"> Âm nhạc
+                                <input type="checkbox" name="sothich[]" id="hobby-4" value="Ẩm thực"> Ẩm thực
+                                <input type="checkbox" name="sothich[]" id="hobby-others" value="Khác"> Khác
                             </div>
                     </p>
 
                     <p>
                         <label for="">Quốc tịch</label> <br>
-                        <select name="nationality" id="nationality">
+                        <select name="quoctich" id="nationality">
                             <option value="">Chọn quốc tịch</option>
                             <option value="Việt Nam">Việt Nam</option>
                             <option value="Anh">Anh</option>
@@ -72,7 +72,7 @@
                     </p>
                     <p>
                         <label for="">Ghi chú</label> <br>
-                        <textarea name="note" id="note" cols="50" rows="4"></textarea>
+                        <textarea name="ghichu" id="note" cols="50" rows="4"></textarea>
                     </p>
 
                     <p><button type="submit"> Đăng ký</button></p>
