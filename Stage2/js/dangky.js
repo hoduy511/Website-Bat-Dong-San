@@ -15,12 +15,15 @@ function check() {
 
     // check fullname
     var fullname = document.getElementById("fullname");
-    if (fullname.value == "") {
+    if (fullname.value === "") {
         message += "Bạn phải nhập họ và tên!<br>";
         fullname.classList.add("error");
         formStatus = false;
-    }
-    else {
+    } else if (!validateFullname(fullname.value)) {
+        message += "Họ và tên không được có số hoặc chứa ký tự đặc biệt!<br>";
+        fullname.classList.add("error");
+        formStatus = false;
+    } else {
         fullname.classList.remove("error");
     }
 
@@ -109,5 +112,10 @@ function check() {
 
     document.getElementById("message").innerHTML = message;
     return formStatus;
+}
+
+function validateFullname(fullname) {
+    var regex = /^[a-zA-Z\s]*$/;
+    return regex.test(fullname);
 }
 
