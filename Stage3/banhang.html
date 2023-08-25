@@ -10,19 +10,20 @@
     <link rel="icon" href="images/iconapp.svg" type="image/x-icon">
     <script src="js/banhang.js"></script>
 </head>
+
 <body>
     <div class="header">
         <img src="images/iconapp.svg" alt="" srcset="" height="200">
     </div>
     <div class="topnav">
-        <a href="index.html">Trang chủ</a>
+        <a href="index.php">Trang chủ</a>
         <a href="forsale.html">Nhà đất bán</a>
         <a href="forent.html">Nhà đất cho thuê</a>
         <a href="dangky.php" style="float: right;">Đăng ký</a>
     </div>
     <div class="row">
         <div class="leftcolumn">
-            <h1>TRANG BÁN HÀNG</h1>       
+            <h1>TRANG BÁN HÀNG</h1>
             <select name="mucgia" id="mucgia" onchange="filter(this)">
                 <option value="0" >Mức giá</option>
                 <option value="1" data-max="1000000">Dưới 1 triệu</option>
@@ -53,10 +54,7 @@
         <div class="rightcolumn">
             <div class="card">
                 <h2>Giới thiệu</h2>
-                <iframe width="250" height="130" src="https://www.youtube.com/embed/2jeqQ6Py-o8"
-                    title="YouTube video player" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen></iframe>
+                <iframe width="250" height="130" src="https://www.youtube.com/embed/2jeqQ6Py-o8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                 <p>PFL là website bất động sản hàng đầu Việt Nam</p>
             </div>
             <div class="card">
@@ -81,4 +79,5 @@
         loadByMinMax(null, null);
     </script>
 </body>
+
 </html>
