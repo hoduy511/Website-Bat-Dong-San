@@ -109,6 +109,6 @@ function check() {
 }
 
 function validateFullname(fullname) {
-    var regex = /^[a-zA-Z\s]*$/;
+    var regex = /^[\p{L}\s]+$|^[\p{L}\s]+[\p{L}\s]+$/u;
     return regex.test(fullname);
 }
