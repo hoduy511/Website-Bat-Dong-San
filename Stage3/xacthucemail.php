@@ -69,54 +69,65 @@ if ($loi != "") { ?>
             } else {
                 $code = random_int(1000, 9999);
                 session_start();
-                $_SESSION["verify_code"] = $code;
-                // send code to email
-                require("PHPMailer-master/src/PHPMailer.php");
-                require("PHPMailer-master/src/SMTP.php");
-                require("PHPMailer-master/src/Exception.php");
+                echo $_SESSION['verify_code'];
+                if (!isset($_SESSION['verify_code'])) {
+                    // send code to email
+                    require("PHPMailer-master/src/PHPMailer.php");
+                    require("PHPMailer-master/src/SMTP.php");
+                    require("PHPMailer-master/src/Exception.php");
 
-                //Create an instance; passing `true` enables exceptions
-                $mail = new PHPMailer\PHPMailer\PHPMailer();
+                    //Create an instance; passing `true` enables exceptions
+                    $mail = new PHPMailer\PHPMailer\PHPMailer();
 
-                try {
-                    //Server settings
-                    $mail->SMTPDebug = 0; //Enable verbose debug output
-                    $mail->isSMTP();
-                    $mail->SMTPSecure = 'ssl'; //Send using SMTP
-                    $mail->Host = 'smtp.gmail.com'; //Set the SMTP server to send through
-                    $mail->SMTPAuth = true; //Enable SMTP authentication
-                    $mail->Username = 'cuongcamauit@gmail.com'; //SMTP username
-                    $mail->Password = 'vpdfwungmoqnoehr'; //SMTP password
-                    //Enable implicit TLS encryption
-                    $mail->Port = 465; //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+                    try {
+                        //Server settings
+                        $mail->SMTPDebug = 0; //Enable verbose debug output
+                        $mail->isSMTP();
+                        $mail->SMTPSecure = 'ssl'; //Send using SMTP
+                        $mail->Host = 'smtp.gmail.com'; //Set the SMTP server to send through
+                        $mail->SMTPAuth = true; //Enable SMTP authentication
+                        $mail->Username = 'cuongcamauit@gmail.com'; //SMTP username
+                        $mail->Password = 'vpdfwungmoqnoehr'; //SMTP password
+                        //Enable implicit TLS encryption
+                        $mail->Port = 465; //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
-                    //Recipients
-                    $mail->setFrom('cuongcamauit@gmail.com', 'Admin PTL');
-                    $mail->addAddress($email, $hoten);
+                        //Recipients
+                        $mail->setFrom('cuongcamauit@gmail.com', 'Admin PTL');
+                        $mail->addAddress($email, $hoten);
 
-                    //Attachments
-                    // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
-                    // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+                        //Attachments
+                        // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+                        // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
 
-                    //Content
-                    $mail->isHTML(true); //Set email format to HTML
-                    $mail->Subject = 'Verify email';
-                    $mail->Body = 'Your verify code: ' . "<b>$code</b>";
-                    //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-                    $mail->send();
-                } catch (Exception $e) {
-                    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                        //Content
+                        $mail->isHTML(true); //Set email format to HTML
+                        $mail->Subject = 'Verify email';
+                        $mail->Body = 'Your verify code: ' . "<b>$code</b>";
+                        //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+                        $mail->send();
+                        $_SESSION["verify_code"] = $code;
+                        $_SESSION["code_time_stamp"] = time();
+                        echo "Message sent successful";
+                    } catch (Exception $e) {
+                        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                    }
+                } else {
+                    // expired after 3 minutes
+                    if (time() - $_SESSION["code_time_stamp"] > 180) {
+                        session_unset();
+                        session_destroy();
+                    }
                 }
 
                 ?>
-                <form action="xulydangky.php" method="post">
-                    <input type="hidden" name="mssv" value="<?php print($mssv)?>">
-                    <input type="hidden" name="hoten" value="<?php print($hoten)?>">
-                    <input type="hidden" name="email" value="<?php print($email)?>">
-                    <input type="hidden" name="gioitinh" value="<?php print($gioitinh)?>">
-                    <input type="hidden" name="sothich" value="<?php print($sothich)?>">
-                    <input type="hidden" name="quoctich" value="<?php print($quoctich)?>">
-                    <input type="hidden" name="ghichu" value="<?php print($ghichu)?>">
+                <form action="xulydangky.php" method="post" id="formxacthuc">
+                    <input type="hidden" name="mssv" value="<?php print($mssv) ?>">
+                    <input type="hidden" name="hoten" value="<?php print($hoten) ?>">
+                    <input type="hidden" name="email" value="<?php print($email) ?>">
+                    <input type="hidden" name="gioitinh" value="<?php print($gioitinh) ?>">
+                    <input type="hidden" name="sothich" value="<?php print($sothich) ?>">
+                    <input type="hidden" name="quoctich" value="<?php print($quoctich) ?>">
+                    <input type="hidden" name="ghichu" value="<?php print($ghichu) ?>">
 
                     <h2>XÁC THỰC EMAIL</h2>
                     <label for="">Nhập mã xác thực</label>

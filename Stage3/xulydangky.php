@@ -80,16 +80,23 @@
                     // authentication
                     $thanhvien = new thanhvien($_POST["mssv"], $_POST["hoten"], $_POST["email"], $_POST["gioitinh"], $_POST["sothich"], $_POST["quoctich"], $_POST["ghichu"]);
                     session_start();
-                    $valid_code = $_SESSION['verify_code'];
+                    $valid_code = null;
+                    if (isset($_SESSION['verify_code']))
+                        $valid_code = $_SESSION['verify_code'];
+
 
                     //
                     $user_code = null;
                     if (isset($_POST['code']))
                         $user_code = $_POST['code'];
-
+                    
                     if ($user_code == $valid_code) {
                         $thanhvien->insert();
-                        echo "<script>alert('Đăng ký thành công'); window.location = '/index.php';</script>";
+                        session_unset();
+                        session_destroy();
+                        echo "<script>alert('Đăng ký thành công!'); window.location = './index.php';</script>";
+                    } else {
+                        echo "<script>alert('Nhập lại mã xác thực!'); history.back();</script>";
                     }
                     ?>
             </div>
