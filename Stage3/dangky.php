@@ -25,7 +25,7 @@
         <div class="leftcolumn">
             <h2>ĐĂNG KÍ THÀNH VIÊN</h2>
             <div class="container">
-                <form action="xulydangky.php" name="register-form" onsubmit="return check();" method="post">
+                <form action="xacthucemail.php" name="register-form" onsubmit="return check();" method="post">
                     <p>
                         <label for="">Mã sinh viên</label> <br>
                         <input type="text" name="mssv" id="student-id" placeholder="Nhập mã số sinh viên">
