@@ -108,7 +108,7 @@ function check() {
     }
 
     if (message == "")
-        message += "Đăng kí thành công";
+        message += "Form hợp lệ!";
 
     document.getElementById("message").innerHTML = message;
     return formStatus;
