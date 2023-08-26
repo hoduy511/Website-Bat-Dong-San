@@ -8,8 +8,7 @@ function check() {
         message += "Bạn phải nhập mã số sinh viên!<br>";
         studentID.classList.add("error");
         formStatus = false;
-    }
-    else {
+    } else {
         studentID.classList.remove("error");
     }
 
@@ -33,12 +32,11 @@ function check() {
         message += "Bạn phải nhập email!<br>";
         email.classList.add("error");
         formStatus = false;
-    }
-    else {
+    } else {
         email.classList.remove("error");
     }
     //check gender
-    var gender = document.getElementsByName("gender");
+    var gender = document.getElementsByName("gioitinh");
     var genderChecked = false;
 
     for (var i = 0; i < gender.length; i++) {
@@ -54,15 +52,14 @@ function check() {
             gender[i].parentNode.classList.add("error");
         }
         formStatus = false;
-    }
-    else {
+    } else {
         for (var i = 0; i < gender.length; i++) {
             gender[i].parentNode.classList.remove("error");
         }
     }
 
     // check hobby
-    var hobby = document.getElementsByName("hobby");
+    var hobby = document.getElementsByName("sothich[]");
     var hobbyChecked = false;
 
     for (var i = 0; i < hobby.length; i++) {
@@ -78,8 +75,7 @@ function check() {
             hobby[i].parentNode.classList.add("error");
         }
         formStatus = false;
-    } 
-    else {
+    } else {
         for (var i = 0; i < hobby.length; i++) {
             hobby[i].parentNode.classList.remove("error");
         }
@@ -91,8 +87,7 @@ function check() {
         message += "Bạn phải chọn quốc tịch!<br>";
         nationality.classList.add("error");
         formStatus = false;
-    }
-    else {
+    } else {
         nationality.classList.remove("error");
     }
 
@@ -102,8 +97,7 @@ function check() {
         message += "Nội dung của ghi chú phải nhỏ hơn 200 ký tự!";
         note.classList.add("error");
         formStatus = false;
-    }
-    else {
+    } else {
         note.classList.remove("error");
     }
 
@@ -115,7 +109,6 @@ function check() {
 }
 
 function validateFullname(fullname) {
-    var regex = /^[a-zA-Z\s]*$/;
+    var regex = /^[\p{L}\s]+$|^[\p{L}\s]+[\p{L}\s]+$/u;
     return regex.test(fullname);
 }
-
