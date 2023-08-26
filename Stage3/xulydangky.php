@@ -11,6 +11,7 @@
     <script src="js/dangky.js"></script>
 </head>
 
+
 <body>
     <div class="header">
         <img src="images/iconapp.svg" alt="" srcset="" height="200">
@@ -19,7 +20,6 @@
         <a href="index.php">Trang chủ</a>
         <a href="forsale.html">Nhà đất bán</a>
         <a href="forent.html">Nhà đất cho thuê</a>
-        <a href="dangky.php" style="float: right;">Đăng ký</a>
     </div>
     <div class="row">
         <div class="leftcolumn">
@@ -68,37 +68,33 @@
                     $loi .= "Bạn chưa chọn quốc tịch <br>";
                 if ($loi != "") { ?>
                     <div>
-                        <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" rel="stylesheet">
-                        <div class="col-8 m-auto">
-                            <div class="alert alert-danger mt-5 text-center ">
-                                <?= $loi ?>
-                                <button class="btn btn-primary" onclick="history.back()">Trở lại</button>
-                            </div>
-                        </div>
+                        <?= print $loi ?>
+                        <button onclick="history.back()">Trở về</button>
                     </div>
-                    <?php }
-                    // authentication
-                    $thanhvien = new thanhvien($_POST["mssv"], $_POST["hoten"], $_POST["email"], $_POST["gioitinh"], $_POST["sothich"], $_POST["quoctich"], $_POST["ghichu"]);
-                    session_start();
-                    $valid_code = null;
-                    if (isset($_SESSION['verify_code']))
-                        $valid_code = $_SESSION['verify_code'];
+
+                <?php }
+                // authentication
+                $thanhvien = new thanhvien($_POST["mssv"], $_POST["hoten"], $_POST["email"], $_POST["gioitinh"], $_POST["sothich"], $_POST["quoctich"], $_POST["ghichu"]);
+                session_start();
+                $valid_code = null;
+                if (isset($_SESSION['verify_code']))
+                    $valid_code = $_SESSION['verify_code'];
 
 
-                    //
-                    $user_code = null;
-                    if (isset($_POST['code']))
-                        $user_code = $_POST['code'];
-                    
-                    if ($user_code == $valid_code) {
-                        $thanhvien->insert();
-                        session_unset();
-                        session_destroy();
-                        echo "<script>alert('Đăng ký thành công!'); window.location = './index.php';</script>";
-                    } else {
-                        echo "<script>alert('Nhập lại mã xác thực!'); history.back();</script>";
-                    }
-                    ?>
+                //
+                $user_code = null;
+                if (isset($_POST['code']))
+                    $user_code = $_POST['code'];
+
+                if ($user_code == $valid_code) {
+                    $thanhvien->insert();
+                    session_unset();
+                    session_destroy();
+                    echo "<script>alert('Đăng ký thành công!'); window.location = './index.php';</script>";
+                } else {
+                    echo "<script>alert('Nhập lại mã xác thực!'); history.back();</script>";
+                }
+                ?>
             </div>
         </div>
         <div class="rightcolumn">
@@ -118,7 +114,7 @@
             </div>
             <div class="card"><a href="bosuutap.html">Bộ sưu tập</a></div>
             <div class="card"><a href="banhang.html">Đặt hàng</a></div>
-
+            <div class="card"><a href="dangky.php">Đăng Ký</a></div>
         </div>
 
     </div>
