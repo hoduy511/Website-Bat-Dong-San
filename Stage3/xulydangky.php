@@ -25,75 +25,72 @@
         <div class="leftcolumn">
             <div class="container">
                 <?php
-                include "connectmysql.php";
-                include "thanhvien.php";
-                $mssv = null;
-                $hoten = null;
-                $email = null;
-                $gioitinh = null;
-                $sothich = null;
-                $quoctich = null;
-                $ghichu = null;
+                    include "connectmysql.php";
+                    include "thanhvien.php";
+                    $mssv = null;
+                    $hoten = null;
+                    $email = null;
+                    $gioitinh = null;
+                    $sothich = null;
+                    $quoctich = null;
+                    $ghichu = null;
+                    
+                    if (isset($_POST["mssv"])) $mssv = $_POST["mssv"];
+                    if (isset($_POST["hoten"])) $hoten = $_POST["hoten"];
+                    if (isset($_POST["email"])) $email = $_POST["email"];
+                    if (isset($_POST["gioitinh"])) $gioitinh = $_POST["gioitinh"];
+                    if (isset($_POST["sothich"])) $sothich = $_POST["sothich"];
+                    if (isset($_POST["quoctich"])) $quoctich = $_POST["quoctich"];
+                    if (isset($_POST["ghichu"])) $ghichu = $_POST["ghichu"];
 
-                if (isset($_POST["mssv"])) $mssv = $_POST["mssv"];
-                if (isset($_POST["hoten"])) $hoten = $_POST["hoten"];
-                if (isset($_POST["email"])) $email = $_POST["email"];
-                if (isset($_POST["gioitinh"])) $gioitinh = $_POST["gioitinh"];
-                if (isset($_POST["sothich"])) $sothich = $_POST["sothich"];
-                if (isset($_POST["quoctich"])) $quoctich = $_POST["quoctich"];
-                if (isset($_POST["ghichu"])) $ghichu = $_POST["ghichu"];
+                    settype($gioitinh, "int");
+                    // validate
+                    $mssv = trim(strip_tags($mssv));
+                    $hoten = trim(strip_tags($hoten));
+                    $email = trim(strip_tags($email));
+                    $quoctich = trim(strip_tags($quoctich));
+                    $ghichu = trim(strip_tags($ghichu));
 
-                settype($gioitinh, "int");
-                // validate
-                $mssv = trim(strip_tags($mssv));
-                $hoten = trim(strip_tags($hoten));
-                $email = trim(strip_tags($email));
-                $quoctich = trim(strip_tags($quoctich));
-                $ghichu = trim(strip_tags($ghichu));
-
-                $loi = "";
-                if ($mssv == "")
-                    $loi .= "Bạn chưa nhập mã số sinh viên <br>";
-                if ($hoten == "")
-                    $loi .= "Bạn chưa nhập họ tên <br>";
-                if ($email == "")
-                    $loi .= "Bạn chưa nhập email <br>";
-                if (filter_var($email, FILTER_VALIDATE_EMAIL) == false)
-                    $loi .= "Email không đúng <br>";
-                if ($gioitinh != 0 && $gioitinh != 1)
-                    $loi .= "Bạn chưa chọn giới tính <br>";
-                if ($sothich == "")
-                    $loi .= "Bạn chưa chọn sở thích <br>";
-                if ($quoctich == "")
-                    $loi .= "Bạn chưa chọn quốc tịch <br>";
-                if ($loi != "") { ?>
-                    <div>
-                        <?= print $loi ?>
-                        <button onclick="history.back()">Trở về</button>
-                    </div>
-
+                    $loi = "";
+                    if ($mssv == "")
+                        $loi .= "Bạn chưa nhập mã số sinh viên <br>";
+                    if ($hoten == "")
+                        $loi .= "Bạn chưa nhập họ tên <br>";
+                    if ($email == "")
+                        $loi .= "Bạn chưa nhập email <br>";
+                    if (filter_var($email, FILTER_VALIDATE_EMAIL) == false)
+                        $loi .= "Email không đúng <br>";
+                    if ($gioitinh != 0 && $gioitinh != 1)
+                        $loi .= "Bạn chưa chọn giới tính <br>";
+                    if ($sothich == "")
+                        $loi .= "Bạn chưa chọn sở thích <br>";
+                    if ($quoctich == "")
+                        $loi .= "Bạn chưa chọn quốc tịch <br>";
+                    if ($loi != "") { ?>
+                        <div>
+                            <?= print $loi ?>
+                            <button onclick="history.back()">Trở về</button>
+                        </div>
                 <?php }
-                // authentication
-                $thanhvien = new thanhvien($_POST["mssv"], $_POST["hoten"], $_POST["email"], $_POST["gioitinh"], $_POST["sothich"], $_POST["quoctich"], $_POST["ghichu"]);
-                session_start();
-                $valid_code = null;
-                if (isset($_SESSION['verify_code']))
-                    $valid_code = $_SESSION['verify_code'];
-
-
-                //
-                $user_code = null;
-                if (isset($_POST['code']))
-                    $user_code = $_POST['code'];
-
-                if ($user_code == $valid_code) {
-                    $thanhvien->insert();
-                    session_unset();
-                    session_destroy();
-                    echo "<script>alert('Đăng ký thành công!'); window.location = './index.php';</script>";
-                } else {
-                    echo "<script>alert('Nhập lại mã xác thực!'); history.back();</script>";
-                }
+                    $thanhvien = new thanhvien($mssv, $hoten, $email, $gioitinh, $sothich, $quoctich, $ghichu);
+                    session_start();
+                    $valid_code = null;
+                    if (isset($_SESSION['verify_code']))
+                        $valid_code = $_SESSION['verify_code'];
+                    $user_code = null;
+                    if (isset($_POST['code']))
+                        $user_code = $_POST['code'];
+                    // check verify code
+                    if ($user_code == $valid_code) {
+                        $thanhvien->insert();
+                        session_unset();
+                        session_destroy();
+                        // notify register successful
+                        echo "<script>alert('Đăng ký thành công!'); window.location = './index.html';</script>";
+                    } else {
+                        // back to enter verify code again
+                        echo "<script>alert('Nhập lại mã xác thực!'); history.back();</script>";
+                    }
                 ?>
             </div>
         </div>
@@ -114,7 +111,7 @@
             </div>
             <div class="card"><a href="bosuutap.html">Bộ sưu tập</a></div>
             <div class="card"><a href="banhang.html">Đặt hàng</a></div>
-            <div class="card"><a href="dangky.php">Đăng Ký</a></div>
+            <div class="card"><a href="dangky.html">Đăng Ký</a></div>
         </div>
 
     </div>

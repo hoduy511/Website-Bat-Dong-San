@@ -34,20 +34,20 @@
                 $quoctich = null;
                 $ghichu = null;
 
-                if (isset($_POST["mssv"]))
-                    $mssv = $_POST["mssv"];
-                if (isset($_POST["hoten"]))
-                    $hoten = $_POST["hoten"];
-                if (isset($_POST["email"]))
-                    $email = $_POST["email"];
-                if (isset($_POST["gioitinh"]))
-                    $gioitinh = $_POST["gioitinh"];
-                if (isset($_POST["sothich"]))
-                    $sothich = implode(', ', $_POST["sothich"]);
-                if (isset($_POST["quoctich"]))
-                    $quoctich = $_POST["quoctich"];
-                if (isset($_POST["ghichu"]))
-                    $ghichu = $_POST["ghichu"];
+                if (isset($_GET["mssv"]))
+                    $mssv = $_GET["mssv"];
+                if (isset($_GET["hoten"]))
+                    $hoten = $_GET["hoten"];
+                if (isset($_GET["email"]))
+                    $email = $_GET["email"];
+                if (isset($_GET["gioitinh"]))
+                    $gioitinh = $_GET["gioitinh"];
+                if (isset($_GET["sothich"]))
+                    $sothich = implode(', ', $_GET["sothich"]);
+                if (isset($_GET["quoctich"]))
+                    $quoctich = $_GET["quoctich"];
+                if (isset($_GET["ghichu"]))
+                    $ghichu = $_GET["ghichu"];
 
                 settype($gioitinh, "int");
                 // validate
@@ -79,7 +79,7 @@
                     </div>
                     <?php } else {
                     // authentication
-                    $thanhvien = new thanhvien($_POST["mssv"], $_POST["hoten"], $_POST["email"], $_POST["gioitinh"], implode(", ", $_POST["sothich"]), $_POST["quoctich"], $_POST["ghichu"]);
+                    $thanhvien = new thanhvien($mssv, $hoten, $email, $gioitinh, $sothich, $quoctich, $ghichu);
                     try {
                         if ($thanhvien->is_exist()) {
                             echo "Bạn đã đăng ký trước đó rồi";
@@ -118,15 +118,10 @@
                                     $mail->setFrom('cuongcamauit@gmail.com', 'Admin PTL');
                                     $mail->addAddress($email, $hoten);
 
-                                    //Attachments
-                                    // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
-                                    // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
-
                                     //Content
                                     $mail->isHTML(true); //Set email format to HTML
                                     $mail->Subject = 'Verify email';
                                     $mail->Body = 'Your verify code: ' . "<b>$code</b>";
-                                    //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
                                     $mail->send();
                                     $_SESSION["verify_code"] = $code;
                                     $_SESSION["code_time_stamp"] = time();
@@ -186,7 +181,7 @@
             </div>
             <div class="card"><a href="bosuutap.html">Bộ sưu tập</a></div>
             <div class="card"><a href="banhang.html">Đặt hàng</a></div>
-            <div class="card"><a href="dangky.php">Đăng Ký</a></div>
+            <div class="card"><a href="dangky.html">Đăng Ký</a></div>
         </div>
 
     </div>
