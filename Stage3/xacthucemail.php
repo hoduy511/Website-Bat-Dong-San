@@ -16,7 +16,7 @@
         <img src="images/iconapp.svg" alt="" srcset="" height="200">
     </div>
     <div class="topnav">
-        <a href="index.php">Trang chủ</a>
+        <a href="index.html">Trang chủ</a>
         <a href="forsale.html">Nhà đất bán</a>
         <a href="forent.html">Nhà đất cho thuê</a>
     </div>
@@ -58,23 +58,23 @@
                 $ghichu = trim(strip_tags($ghichu));
 
                 $loi = "";
-                if ($mssv == "")
+                if ($mssv == null || $mssv == "")
                     $loi .= "Bạn chưa nhập mã số sinh viên <br>";
-                if ($hoten == "")
+                if ($hoten == null || $hoten == "")
                     $loi .= "Bạn chưa nhập họ tên <br>";
-                if ($email == "")
+                if ($email == null || $email == "")
                     $loi .= "Bạn chưa nhập email <br>";
                 if (filter_var($email, FILTER_VALIDATE_EMAIL) == false)
                     $loi .= "Email không đúng <br>";
                 if ($gioitinh != 0 && $gioitinh != 1)
                     $loi .= "Bạn chưa chọn giới tính <br>";
-                if ($sothich == "")
+                if ($sothich == null || $sothich == "")
                     $loi .= "Bạn chưa chọn sở thích <br>";
-                if ($quoctich == "")
+                if ($quoctich == null || $quoctich == "")
                     $loi .= "Bạn chưa chọn quốc tịch <br>";
                 if ($loi != "") { ?>
                     <div>
-                        <?= print $loi ?>
+                        <?php print $loi ?>
                         <button onclick="history.back()">Trở về</button>
                     </div>
                     <?php } else {

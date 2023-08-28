@@ -1,4 +1,5 @@
 <?php
+    require_once('connectmysql.php');
     // contain attribute and method of a user
     class thanhvien
     {
